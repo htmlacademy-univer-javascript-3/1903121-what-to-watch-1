@@ -8,14 +8,17 @@ import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PlayerScreen from '../../pages/player-screen/player-screen';
 import SignInScreen from '../../pages/sign-in-screen/sign-in-screen';
 import PrivateRoute from '../private-route/private-route';
+import { film } from '../../types/film';
+import { addReview, review } from '../../types/review';
+import MoviePageDetailsScreen from '../../pages/movie-page-details-screen/movie-page-details-screen';
+import MoviePageReviewsScreen from '../../pages/movie-page-reviews-screen/movie-page-reviews-screen';
 
-const FilmData = {
-  FILM_TITLE: 'The Grand Budapest Hotel',
-  FILM_GENRE: 'Drama',
-  FILM_YEAR: '2014'
-};
+type AppScreenProps = {
+  films: film[]
+  reviews: review[]
+}
 
-function App(): JSX.Element {
+function App({films, reviews}:AppScreenProps ): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -23,9 +26,7 @@ function App(): JSX.Element {
           path = {AppRoute.Main}
           element = {
             <MainScreen
-              filmTitle = {FilmData.FILM_TITLE}
-              filmGenre = {FilmData.FILM_GENRE}
-              filmYear = {FilmData.FILM_YEAR}
+              films = {films}
             />
           }
         />
@@ -36,24 +37,39 @@ function App(): JSX.Element {
         <Route
           path = {AppRoute.MyList}
           element = {
-            <PrivateRoute authStatus={AuthStatus.NotAuth}>
-              <MyListScreen/>
+            <PrivateRoute authStatus={AuthStatus.Auth}>
+              <MyListScreen
+                films = {films}
+              />
             </PrivateRoute>
           }
         />
         <Route
           path = {AppRoute.Film}
-          element = {<MoviePageScreen/>}
+          element = {<MoviePageScreen films={films}/>}
+        />
+        <Route
+          path = {AppRoute.FilmDetails}
+          element = {<MoviePageDetailsScreen films={films}/>}
+        />
+        <Route
+          path = {AppRoute.FilmReviews}
+          element = {<MoviePageReviewsScreen films={films} reviews={reviews}/>}
         />
         <Route
           path = {AppRoute.Player}
-          element = {<PlayerScreen/>}
+          element = {<PlayerScreen films = {films}/>}
         />
         <Route
           path = {AppRoute.AddReview}
           element = {
             <PrivateRoute authStatus={AuthStatus.Auth}>
-              <AddReviewScreen/>
+              <AddReviewScreen
+                films = {films}
+                onReview={({rating, comment}:addReview) => {
+                  throw new Error(`${rating}, ${comment}`);
+                }}
+              />
             </PrivateRoute>
           }
         />
