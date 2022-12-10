@@ -1,4 +1,4 @@
-import MainScreen from "../../pages/main-screen/main-screen";
+import MainScreen from '../../pages/main-screen/main-screen';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppRoute, AuthStatus } from '../../const';
 import AddReviewScreen from '../../pages/add-review-screen/add-review-screen';
