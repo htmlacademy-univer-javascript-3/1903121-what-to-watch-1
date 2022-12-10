@@ -13,13 +13,13 @@ function FilmNav({FilmId}:FilmNavProps) {
 
   if(active === 'O') {
     Overview += ' film-nav__item--active';
-    console.log('O: ',Overview);
+    //console.log('O: ',Overview);
   } else if(active === 'D') {
     Details += ' film-nav__item--active';
-    console.log('D: ',Details);
+    //console.log('D: ',Details);
   } else if(active === 'R') {
     Reviews += ' film-nav__item--active';
-    console.log('R: ',Reviews);
+    //console.log('R: ',Reviews);
   }
 
 

@@ -17,7 +17,7 @@ function AddReviewScreen({films, onReview}:AddReviewProps) {
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-        <img src={filmData.backgroundImage} alt={filmData.name} />
+          <img src={filmData.backgroundImage} alt={filmData.name} />
         </div>
         <h1 className="visually-hidden">WTW</h1>
         <header className="page-header">
@@ -34,7 +34,7 @@ function AddReviewScreen({films, onReview}:AddReviewProps) {
                 <a href="film-page.html" className="breadcrumbs__link">{filmData.name}</a>
               </li>
               <li className="breadcrumbs__item">
-                <a className="breadcrumbs__link">Add review</a>
+                <a href='' className="breadcrumbs__link">Add review</a>
               </li>
             </ul>
           </nav>
@@ -45,7 +45,7 @@ function AddReviewScreen({films, onReview}:AddReviewProps) {
               </div>
             </li>
             <li className="user-block__item">
-              <a className="user-block__link">Sign out</a>
+              <a href='' className="user-block__link">Sign out</a>
             </li>
           </ul>
         </header>
@@ -59,7 +59,7 @@ function AddReviewScreen({films, onReview}:AddReviewProps) {
         </div>
       </div>
       <div className="add-review">
-      <ReviewForm onReview={onReview}/>
+        <ReviewForm onReview={onReview}/>
       </div>
     </section>
   );
