@@ -8,7 +8,6 @@ export type review = {
   name: string
   }
 };
-  
 export type addReview = {
   comment: string
   rating: number
