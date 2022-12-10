@@ -3,16 +3,25 @@ import FilmList from '../../components/film-list/film-list';
 import { film } from '../../types/film';
 import {AppRoute} from '../../const';
 import FilmNav from '../../components/film-nav/film-nav';
+import FilmTabs from '../../components/film-tabs/film-tabs';
+import { review } from '../../types/review';
+import { useState } from 'react';
+import FilmsList from '../../components/films-list/films-list';
 
 type MoviePageScreenProps = {
   films: film[]
+  reviews: review[]
 }
 
-function MoviePageScreen({films}:MoviePageScreenProps) {
+function MoviePageScreen({films, reviews}:MoviePageScreenProps) {
   const params = useParams();
   const FilmId = Number(params.id);
   const filmData = films[FilmId];
   const navigate = useNavigate();
+  const [tab, setTab] = useState<'overview'|'details'|'reviews'>('overview');
+  const getType = (type: 'overview'|'details'|'reviews') => {
+    setTab(type);
+  };
 
   return (
     <>
@@ -73,29 +82,18 @@ function MoviePageScreen({films}:MoviePageScreenProps) {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-            <img
-              src={filmData.posterImage}
-              alt={filmData.name}
-              width={218}
-              height={327}
-            />
+              <img
+                src={filmData.posterImage}
+                alt={filmData.name}
+                width={218}
+                height={327}
+              />
             </div>
             <div className="film-card__desc">
               <nav className="film-nav film-card__nav">
-                <FilmNav FilmId={FilmId}/>
+                <FilmNav FilmId={FilmId} getType={getType}/>
               </nav>
-              <div className="film-rating">
-                <div className="film-rating__score">{filmData.rating}</div>
-                <p className="film-rating__meta">
-                  <span className="film-rating__level">Very good</span>
-                  <span className="film-rating__count">{filmData.scoresCount} ratings</span>
-                </p>
-              </div>
-              <div className="film-card__text">
-                  <p>{filmData.description}</p>
-                  <p className="film-card__director"><strong>Director: {filmData.director}</strong></p>
-                  <p className="film-card__starring"><strong>Starring: {filmData.starring} and other</strong></p>
-              </div>
+              <FilmTabs type={tab} filmData={filmData} reviews={reviews}/>
             </div>
           </div>
         </div>
@@ -103,7 +101,7 @@ function MoviePageScreen({films}:MoviePageScreenProps) {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmList films={films}/>
+          <FilmsList films={films} genre={filmData.genre} filmId={FilmId}/>
         </section>
         <footer className="page-footer">
           <div className="logo">
