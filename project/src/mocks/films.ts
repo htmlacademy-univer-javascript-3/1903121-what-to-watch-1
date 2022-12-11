@@ -38,7 +38,7 @@ export const films: film[] = [
       'asd'
     ],
     runTime: 98,
-    genre: 'Comedy',
+    genre: 'Sci-fi',
     released: 2011,
     isFavorite: false
   },{
@@ -58,7 +58,7 @@ export const films: film[] = [
       'asd'
     ],
     runTime: 130,
-    genre: 'Comedy',
+    genre: 'Drama',
     released: 2020,
     isFavorite: false
   },{
@@ -78,7 +78,7 @@ export const films: film[] = [
       'asd'
     ],
     runTime: 87,
-    genre: 'Comedy',
+    genre: 'Crime',
     released: 2020,
     isFavorite: false
   },{
@@ -118,7 +118,7 @@ export const films: film[] = [
       'asd'
     ],
     runTime: 120,
-    genre: 'Comedy',
+    genre: 'Horror',
     released: 2018,
     isFavorite: false
   },{
@@ -138,7 +138,7 @@ export const films: film[] = [
       'asd'
     ],
     runTime: 95,
-    genre: 'Comedy',
+    genre: 'Thriller',
     released: 2011,
     isFavorite: false
   },{
@@ -158,7 +158,7 @@ export const films: film[] = [
       'asd'
     ],
     runTime: 118,
-    genre: 'Comedy',
+    genre: 'Romance',
     released: 2019,
     isFavorite: false
   }

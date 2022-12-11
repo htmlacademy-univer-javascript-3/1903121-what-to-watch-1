@@ -1,7 +1,11 @@
-import { useNavigate } from 'react-router-dom';
 import FilmList from '../../components/film-list/film-list';
 import { AppRoute } from '../../const';
 import { film } from '../../types/film';
+import { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import Genres from '../../components/genres/genres';
+import { useAppSelector, useAppDispatch } from '../../hooks';
+import { viewGenreFilms } from '../../store/actions';
 
 type MainScreenProps = {
   films: film[]
@@ -9,7 +13,14 @@ type MainScreenProps = {
 
 function MainScreen({films}:MainScreenProps) {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const filmData = films[0];
+  const genre = useAppSelector((state) => state.genre);
+  const genreFilms = useAppSelector((state) => state.films);
+
+  useEffect(() => {
+    dispatch(viewGenreFilms());
+  },[genre]);
 
   return (
     <>
@@ -41,7 +52,7 @@ function MainScreen({films}:MainScreenProps) {
               </div>
             </li>
             <li className="user-block__item">
-              <a className="user-block__link">Sign out</a>
+              <Link to='#' className="user-block__link">Sign out</Link>
             </li>
           </ul>
         </header>
@@ -83,58 +94,8 @@ function MainScreen({films}:MainScreenProps) {
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <ul className="catalog__genres-list">
-            <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="#" className="catalog__genres-link">
-                All genres
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
-                Comedies
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
-                Crime
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
-                Documentary
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
-                Dramas
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
-                Horror
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
-                Kids &amp; Family
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
-                Romance
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
-                Sci-Fi
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
-                Thrillers
-              </a>
-            </li>
-          </ul>
+          <Genres/>
+          <FilmList films={genreFilms}/>
           <FilmList films={films}/>
           <div className="catalog__more">
             <button className="catalog__button" type="button">
@@ -144,11 +105,11 @@ function MainScreen({films}:MainScreenProps) {
         </section>
         <footer className="page-footer">
           <div className="logo">
-            <a className="logo__link logo__link--light">
+            <Link to='#' className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
           <div className="copyright">
             <p>© 2019 What to watch Ltd.</p>
