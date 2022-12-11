@@ -1,5 +1,4 @@
 import {Link, useNavigate, useParams} from 'react-router-dom';
-import FilmList from '../../components/film-list/film-list';
 import { film } from '../../types/film';
 import {AppRoute} from '../../const';
 import FilmNav from '../../components/film-nav/film-nav';
@@ -28,10 +27,10 @@ function MoviePageScreen({films, reviews}:MoviePageScreenProps) {
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-          <img
-            src={filmData.backgroundImage}
-            alt={filmData.name}
-          />
+            <img
+              src={filmData.backgroundImage}
+              alt={filmData.name}
+            />
           </div>
           <h1 className="visually-hidden">WTW</h1>
           <header className="page-header film-card__head">
@@ -49,7 +48,7 @@ function MoviePageScreen({films, reviews}:MoviePageScreenProps) {
                 </div>
               </li>
               <li className="user-block__item">
-                <a className="user-block__link">Sign out</a>
+                <Link to='#' className="user-block__link">Sign out</Link>
               </li>
             </ul>
           </header>
