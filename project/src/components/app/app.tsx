@@ -38,6 +38,7 @@ function App({films, reviews}:AppScreenProps ): JSX.Element {
             <PrivateRoute authStatus={AuthStatus.Auth}>
               <MyListScreen
                 films = {films}
+                addFilmsAmount = {films.length}
               />
             </PrivateRoute>
           }

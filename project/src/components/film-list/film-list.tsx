@@ -3,12 +3,13 @@ import { film } from '../../types/film';
 
 type FilmListProps ={
   films: film[]
+  addFilmsAmount:number
 }
 
-function FilmList({films}:FilmListProps) {
+function FilmList({films, addFilmsAmount}:FilmListProps) {
   return (
     <div className="catalog__films-list">
-      {films.map((filmData, id) => {
+      {films.slice(0, addFilmsAmount).map((filmData, id) => {
         const keyValue = `${id}-${filmData.name}`;
         return (
           <SmallFilmCard

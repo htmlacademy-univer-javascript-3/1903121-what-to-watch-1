@@ -5,7 +5,8 @@ import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Genres from '../../components/genres/genres';
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { viewGenreFilms } from '../../store/actions';
+import ShowMoreButton from '../../components/show-more-button/show-more-button';
+import { resetAddFilms, viewGenreFilms } from '../../store/actions';
 
 type MainScreenProps = {
   films: film[]
@@ -17,10 +18,15 @@ function MainScreen({films}:MainScreenProps) {
   const filmData = films[0];
   const genre = useAppSelector((state) => state.genre);
   const genreFilms = useAppSelector((state) => state.films);
+  const addFilmsAmount = useAppSelector((state)=>state.addFilmsAmount);
 
   useEffect(() => {
     dispatch(viewGenreFilms());
   },[genre]);
+
+  useEffect(() => {
+    dispatch(resetAddFilms());
+  },[]);
 
   return (
     <>
@@ -95,13 +101,8 @@ function MainScreen({films}:MainScreenProps) {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <Genres/>
-          <FilmList films={genreFilms}/>
-          <FilmList films={films}/>
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">
-              Show more
-            </button>
-          </div>
+          <FilmList films={genreFilms} addFilmsAmount={addFilmsAmount}/>
+          {addFilmsAmount <= genreFilms.length && <ShowMoreButton/>}
         </section>
         <footer className="page-footer">
           <div className="logo">

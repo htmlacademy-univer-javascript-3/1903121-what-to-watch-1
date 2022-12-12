@@ -161,5 +161,105 @@ export const films: film[] = [
     genre: 'Romance',
     released: 2019,
     isFavorite: false
+  },{
+    id: 8,
+    name: 'no-country-for-old-men',
+    posterImage: 'img/no-country-for-old-men-poster.jpg',
+    previewImage: 'img/no-country-for-old-men.jpg',
+    backgroundImage: 'img/no-country-for-old-men-bg.jpg',
+    backgroundColor: '#ffffff',
+    videoLink: 'https://some-link',
+    previewVideoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    description: 'nocountryforoldmen',
+    rating: 8.8,
+    scoresCount: 210,
+    director: 'Wes Anderson',
+    starring: [
+      'Bill Murray'
+    ],
+    runTime: 118,
+    genre: 'Thriller',
+    released: 2019,
+    isFavorite: false
+  },{
+    id: 9,
+    name: 'no-country-for-old-men',
+    posterImage: 'img/no-country-for-old-men-poster.jpg',
+    previewImage: 'img/no-country-for-old-men.jpg',
+    backgroundImage: 'img/no-country-for-old-men-bg.jpg',
+    backgroundColor: '#ffffff',
+    videoLink: 'https://some-link',
+    previewVideoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    description: 'nocountryforoldmen',
+    rating: 8.8,
+    scoresCount: 210,
+    director: 'Wes Anderson',
+    starring: [
+      'Bill Murray'
+    ],
+    runTime: 118,
+    genre: 'Thriller',
+    released: 2019,
+    isFavorite: false
+  },{
+    id: 10,
+    name: 'no-country-for-old-men',
+    posterImage: 'img/no-country-for-old-men-poster.jpg',
+    previewImage: 'img/no-country-for-old-men.jpg',
+    backgroundImage: 'img/no-country-for-old-men-bg.jpg',
+    backgroundColor: '#ffffff',
+    videoLink: 'https://some-link',
+    previewVideoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    description: 'nocountryforoldmen',
+    rating: 8.8,
+    scoresCount: 210,
+    director: 'Wes Anderson',
+    starring: [
+      'Bill Murray'
+    ],
+    runTime: 118,
+    genre: 'Thriller',
+    released: 2019,
+    isFavorite: false
+  },{
+    id: 11,
+    name: 'no-country-for-old-men',
+    posterImage: 'img/no-country-for-old-men-poster.jpg',
+    previewImage: 'img/no-country-for-old-men.jpg',
+    backgroundImage: 'img/no-country-for-old-men-bg.jpg',
+    backgroundColor: '#ffffff',
+    videoLink: 'https://some-link',
+    previewVideoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    description: 'nocountryforoldmen',
+    rating: 8.8,
+    scoresCount: 210,
+    director: 'Wes Anderson',
+    starring: [
+      'Bill Murray'
+    ],
+    runTime: 118,
+    genre: 'Thriller',
+    released: 2019,
+    isFavorite: false
+  },{
+    id: 12,
+    name: 'no-country-for-old-men',
+    posterImage: 'img/no-country-for-old-men-poster.jpg',
+    previewImage: 'img/no-country-for-old-men.jpg',
+    backgroundImage: 'img/no-country-for-old-men-bg.jpg',
+    backgroundColor: '#ffffff',
+    videoLink: 'https://some-link',
+    previewVideoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    description: 'nocountryforoldmen',
+    rating: 8.8,
+    scoresCount: 210,
+    director: 'Wes Anderson',
+    starring: [
+      'Bill Murray'
+    ],
+    runTime: 118,
+    genre: 'Thriller',
+    released: 2019,
+    isFavorite: false
   }
 ];

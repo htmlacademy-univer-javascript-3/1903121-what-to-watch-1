@@ -3,9 +3,10 @@ import { film } from '../../types/film';
 
 type MyListScreenProps = {
   films: film[]
+  addFilmsAmount: number
 }
 
-function MyListScreen({films}:MyListScreenProps) {
+function MyListScreen({films, addFilmsAmount}:MyListScreenProps) {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -30,7 +31,7 @@ function MyListScreen({films}:MyListScreenProps) {
       </header>
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <FilmList films={films}/>
+        <FilmList films={films} addFilmsAmount={films.length}/>
       </section>
       <footer className="page-footer">
         <div className="logo">
