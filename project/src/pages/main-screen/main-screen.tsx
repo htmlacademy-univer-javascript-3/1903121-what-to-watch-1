@@ -6,7 +6,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import Genres from '../../components/genres/genres';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import ShowMoreButton from '../../components/show-more-button/show-more-button';
-import { resetAddFilms, viewGenreFilms } from '../../store/actions';
+import { resetAddFilms } from '../../store/actions';
+import UserBlock from '../../components/user-block/user-block';
 
 type MainScreenProps = {
   films: film[]
@@ -15,14 +16,11 @@ type MainScreenProps = {
 function MainScreen({films}:MainScreenProps) {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const filmData = films[0];
+  const filmData = useAppSelector((state) => state.promo);
   const genre = useAppSelector((state) => state.genre);
-  const genreFilms = useAppSelector((state) => state.films);
-  const addFilmsAmount = useAppSelector((state)=>state.addFilmsAmount);
-
-  useEffect(() => {
-    dispatch(viewGenreFilms());
-  },[genre]);
+  const addFilmsAmount = useAppSelector((state)=>state.numberFilmsShow);
+  let genreFilms;
+  genre === 'all' ? genreFilms = films : genreFilms = films.filter((genreFilm) => genreFilm.genre === genre);
 
   useEffect(() => {
     dispatch(resetAddFilms());
@@ -46,21 +44,7 @@ function MainScreen({films}:MainScreenProps) {
               <span className="logo__letter logo__letter--3">W</span>
             </a>
           </div>
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img
-                  src="img/avatar.jpg"
-                  alt="User avatar"
-                  width={63}
-                  height={63}
-                />
-              </div>
-            </li>
-            <li className="user-block__item">
-              <Link to='#' className="user-block__link">Sign out</Link>
-            </li>
-          </ul>
+          <UserBlock/>
         </header>
         <div className="film-card__wrap">
           <div className="film-card__info">

@@ -1,26 +1,32 @@
 import {Link, useNavigate, useParams} from 'react-router-dom';
-import { film } from '../../types/film';
-import {AppRoute} from '../../const';
 import FilmNav from '../../components/film-nav/film-nav';
+import SimilarFilmsList from '../../components/similar-films-list/similar-films-list';
+import {AppRoute, AuthStatus} from '../../const';
+import { useEffect, useState } from 'react';
+import { fetchFilmAction, fetchReviewsAction, fetchSimilarFilmsAction } from '../../store/api-actions';
+import { store } from '../../store';
+import { useAppSelector } from '../../hooks';
 import FilmTabs from '../../components/film-tabs/film-tabs';
-import { review } from '../../types/review';
-import { useState } from 'react';
-import FilmsList from '../../components/films-list/films-list';
+import UserBlock from '../../components/user-block/user-block';
 
-type MoviePageScreenProps = {
-  films: film[]
-  reviews: review[]
-}
-
-function MoviePageScreen({films, reviews}:MoviePageScreenProps) {
+function MoviePageScreen() {
   const params = useParams();
   const FilmId = Number(params.id);
-  const filmData = films[FilmId];
   const navigate = useNavigate();
   const [tab, setTab] = useState<'overview'|'details'|'reviews'>('overview');
   const getType = (type: 'overview'|'details'|'reviews') => {
     setTab(type);
   };
+  const reviews = useAppSelector((state)=> state.reviews);
+  const filmData = useAppSelector((state)=> state.film);
+  const similarFilms = useAppSelector((state)=> state.similarFilms);
+  const authStatus = useAppSelector((state)=> state.authStatus);
+
+  useEffect(() => {
+    store.dispatch(fetchFilmAction(FilmId));
+    store.dispatch(fetchSimilarFilmsAction(FilmId));
+    store.dispatch(fetchReviewsAction(FilmId));
+  }, [FilmId]);
 
   return (
     <>
@@ -41,16 +47,7 @@ function MoviePageScreen({films, reviews}:MoviePageScreenProps) {
                 <span className="logo__letter logo__letter--3">W</span>
               </a>
             </div>
-            <ul className="user-block">
-              <li className="user-block__item">
-                <div className="user-block__avatar">
-                  <img src="img/avatar.jpg" alt="User avatar" width={63} height={63} />
-                </div>
-              </li>
-              <li className="user-block__item">
-                <Link to='#' className="user-block__link">Sign out</Link>
-              </li>
-            </ul>
+            <UserBlock/>
           </header>
           <div className="film-card__wrap">
             <div className="film-card__desc">
@@ -73,7 +70,7 @@ function MoviePageScreen({films, reviews}:MoviePageScreenProps) {
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <Link to={`/films/${filmData.id}/review`} className="btn film-card__button">Add review</Link>
+                {authStatus === AuthStatus.Auth && <Link to={`/films/${FilmId}/review`} className="btn film-card__button">Add review</Link>}
               </div>
             </div>
           </div>
@@ -100,7 +97,7 @@ function MoviePageScreen({films, reviews}:MoviePageScreenProps) {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmsList films={films} genre={filmData.genre} filmId={FilmId}/>
+          <SimilarFilmsList films={similarFilms}/>
         </section>
         <footer className="page-footer">
           <div className="logo">
