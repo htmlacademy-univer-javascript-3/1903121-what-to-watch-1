@@ -7,9 +7,9 @@ type ReviewListProps = {
 }
 
 function ReviewList({reviews}:ReviewListProps) {
-  const halfReviews = Math.floor(reviews.length / 2);
-  const firstReviewColumn = reviews.filter((rev) => rev.user.id <= Math.ceil(halfReviews));
-  const secondReviewColumn = reviews.filter((rev) => rev.user.id > Math.ceil(halfReviews));
+  const halfReviews = Math.ceil(reviews.length / 2);
+  const firstReviewColumn = reviews.filter((rev) => rev.id <= Math.ceil(halfReviews));
+  const secondReviewColumn = reviews.filter((rev) => rev.id > Math.ceil(halfReviews));
   return (
     <div className="film-card__reviews film-card__row">
       <ReviewColumn reviews = {firstReviewColumn}/>
