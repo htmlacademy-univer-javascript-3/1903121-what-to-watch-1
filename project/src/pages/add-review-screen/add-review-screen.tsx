@@ -1,6 +1,5 @@
 import ReviewForm from '../../components/review-form/review-form';
 import { film } from '../../types/film';
-import { addReview } from '../../types/review';
 import UserBlock from '../../components/user-block/user-block';
 import { Link } from 'react-router-dom';
 

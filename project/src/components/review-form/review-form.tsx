@@ -21,7 +21,6 @@ function ReviewForm({id}:ReviewFormProps) {
         evt.preventDefault();
         dispatch(postReviewAction({comment, rating, id}));
         navigate(`/films/${id}`);
-        console.log(rating, comment);
       }}
     >
       <div className="rating">
