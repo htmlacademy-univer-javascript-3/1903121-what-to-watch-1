@@ -68,16 +68,7 @@ function App(): JSX.Element {
           path = {AppRoute.Player}
           element = {<PlayerScreen films = {films}/>}
         />
-        <Route
-          path = {AppRoute.AddReview}
-          element = {
-            <PrivateRoute authStatus={authStatus}>
-              <AddReviewScreen
-                filmData = {filmData}
-              />
-            </PrivateRoute>
-          }
-        />
+        
         <Route
           path = "*"
           element = {<NotFoundScreen/>}

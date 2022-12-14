@@ -14,7 +14,7 @@ function ReviewForm({onReview}:ReviewFormProps) {
       className="add-review__form"
       onSubmit={(evt:FormEvent<HTMLFormElement>) =>{
         evt.preventDefault();
-        onReview({rating, comment});
+        //onReview({rating, comment});
       }}
     >
       <div className="rating">
