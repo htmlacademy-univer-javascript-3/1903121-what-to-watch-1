@@ -15,7 +15,7 @@ export const fetchFilmsAction = createAsyncThunk<film[], undefined, {
   extra: AxiosInstance
 }>(
   'data/fetchFilms',
-  async (_arg, {dispatch, extra: api}) => {
+  async (_arg, {extra: api}) => {
     const {data} = await api.get<film[]>(APIRoute.Films);
     return data;
   },
@@ -27,7 +27,7 @@ export const fetchPromoAction = createAsyncThunk<film, undefined, {
   extra: AxiosInstance
 }>(
   'data/fetchPromo',
-  async (_arg, {dispatch, extra: api}) => {
+  async (_arg, {extra: api}) => {
     const {data} = await api.get<film>(APIRoute.Promo);
     return data;
   },
@@ -39,7 +39,7 @@ export const fetchFilmAction = createAsyncThunk<film, number, {
   extra: AxiosInstance
 }>(
   'data/fetchFilm',
-  async (_arg, {dispatch, extra: api}) => {
+  async (_arg, {extra: api}) => {
     const {data} = await api.get<film>(`https://10.react.pages.academy/wtw/films/${_arg}`);
     return data;
   },
@@ -51,7 +51,7 @@ export const fetchReviewsAction = createAsyncThunk<review[], number, {
   extra: AxiosInstance
 }>(
   'data/fetchReviews',
-  async (_arg, {dispatch, extra: api}) => {
+  async (_arg, {extra: api}) => {
     const {data} = await api.get<review[]>(`https://10.react.pages.academy/wtw/comments/${_arg}`);
     return data;
   },
@@ -63,7 +63,7 @@ export const postReviewAction = createAsyncThunk<review, addReview, {
   extra: AxiosInstance
 }>(
   'data/postReview',
-  async ({comment, rating, id}, {dispatch, extra: api}) => {
+  async ({comment, rating, id}, {extra: api}) => {
     const {data: reviewData} = await api.post<review>(`/comments/${id}`, {comment, rating});
     return reviewData;
   },
@@ -75,7 +75,7 @@ export const fetchMyListAction = createAsyncThunk<film[], undefined, {
   extra: AxiosInstance
 }>(
   'data/fetchMyList',
-  async (_arg, {dispatch, extra: api}) => {
+  async (_arg, {extra: api}) => {
     const {data} = await api.get<film[]>(APIRoute.MyList);
     return data;
   },
@@ -87,7 +87,7 @@ export const switchFilmStatusAction = createAsyncThunk<film, [number, number], {
   extra: AxiosInstance
 }>(
   'data/switchFilmStatus',
-  async ([FilmId, status], {dispatch, extra: api}) => {
+  async ([FilmId, status], {extra: api}) => {
     const {data: filmData} = await api.post<film>(`/favorite/${FilmId}/${status}`);
     return filmData;
   },
@@ -99,7 +99,7 @@ export const fetchSimilarFilmsAction = createAsyncThunk<film[], number, {
   extra: AxiosInstance
 }>(
   'data/fetchSimilarFilms',
-  async (_arg, {dispatch, extra: api}) => {
+  async (_arg, {extra: api}) => {
     const {data} = await api.get<film[]>(`https://10.react.pages.academy/wtw/films/${_arg}/similar`);
     return data;
   },
@@ -111,7 +111,7 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
   extra: AxiosInstance
 }>(
   'user/checkAuth',
-  async (_arg, {dispatch, extra: api}) => {
+  async (_arg, {extra: api}) => {
     await api.get(APIRoute.Login);
   },
 );
@@ -135,7 +135,7 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   extra: AxiosInstance
 }>(
   'user/logout',
-  async (_arg, {dispatch, extra: api}) => {
+  async (_arg, {extra: api}) => {
     await api.delete(APIRoute.Logout);
     dropToken();
   },
