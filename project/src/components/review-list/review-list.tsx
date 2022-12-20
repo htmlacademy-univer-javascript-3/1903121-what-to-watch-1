@@ -1,7 +1,6 @@
 import ReviewColumn from '../review-column/review-column';
 import { review } from '../../types/review';
 
-
 type ReviewListProps = {
   reviews: review[]
 }

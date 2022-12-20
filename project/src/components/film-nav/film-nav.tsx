@@ -7,9 +7,8 @@ type FilmNavProps = {
   getType: (type: 'overview'|'details'|'reviews') => void
 }
 
-function FilmNav({FilmId, getType}:FilmNavProps) {
+function FilmNav({FilmId: FilmId, getType}:FilmNavProps) {
   const [activeItem, setActiveItem] = useState([true, false, false]);
-
 
   return (
     <ul className = "film-nav__list">

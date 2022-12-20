@@ -12,13 +12,17 @@ import { useAppSelector } from '../../hooks';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
 import HistoryRouter from '../history-router/history-router';
 import browserHistory from '../../browser-history';
+import { getAuthStatus } from '../../store/user-process/selectors';
+import { getFilms, getLoadedDataStatus } from '../../store/data-process/selectors';
+import { getFilm } from '../../store/film-process/selectors';
 
 const isCheckedAuth = (authStatus: AuthStatus): boolean => authStatus === AuthStatus.Unknown;
 
 function App(): JSX.Element {
-  const {authStatus, isDataLoaded} = useAppSelector((state) => state);
-  const {films} = useAppSelector((state) => state);
-  const filmData = useAppSelector((state)=> state.film);
+  const films = useAppSelector(getFilms);
+  const filmData = useAppSelector(getFilm);
+  const authStatus = useAppSelector(getAuthStatus);
+  const isDataLoaded = useAppSelector(getLoadedDataStatus);
 
   if (isCheckedAuth(authStatus) || isDataLoaded) {
     return (
@@ -45,10 +49,7 @@ function App(): JSX.Element {
           path = {AppRoute.MyList}
           element = {
             <PrivateRoute authStatus={authStatus}>
-              <MyListScreen
-                films = {films}
-                addFilmsAmount = {films.length}
-              />
+              <MyListScreen/>
             </PrivateRoute>
           }
         />
@@ -66,7 +67,7 @@ function App(): JSX.Element {
         />
         <Route
           path = {AppRoute.Player}
-          element = {<PlayerScreen films = {films}/>}
+          element = {<PlayerScreen filmData = {filmData}/>}
         />
         <Route
           path = {AppRoute.AddReview}

@@ -1,12 +1,10 @@
 import FilmList from '../../components/film-list/film-list';
-import { film } from '../../types/film';
+import { useAppSelector } from '../../hooks';
+import { getMyList } from '../../store/film-list-process/selectors';
 
-type MyListScreenProps = {
-  films: film[]
-  addFilmsAmount: number
-}
+function MyListScreen() {
+  const films = useAppSelector(getMyList);
 
-function MyListScreen({films, addFilmsAmount}:MyListScreenProps) {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -17,7 +15,7 @@ function MyListScreen({films, addFilmsAmount}:MyListScreenProps) {
             <span className="logo__letter logo__letter--3">W</span>
           </a>
         </div>
-        <h1 className="page-title user-page__title">My list <span className="user-page__film-count">9</span></h1>
+        <h1 className="page-title user-page__title">My list <span className="user-page__film-count">{films.length}</span></h1>
         <ul className="user-block">
           <li className="user-block__item">
             <div className="user-block__avatar">

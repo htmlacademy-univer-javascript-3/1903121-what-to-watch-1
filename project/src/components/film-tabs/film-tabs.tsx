@@ -9,6 +9,30 @@ type FilmTabsProps = {
 }
 
 function FilmTabs({type, filmData, reviews}: FilmTabsProps) {
+  const getRating = (rating:number) => {
+    if(rating < 3) {
+      return 'Bad';
+    }
+    if(rating > 3 && rating < 5) {
+      return 'Normal';
+    }
+    if(rating > 5 && rating < 8) {
+      return 'Good';
+    }
+    if(rating > 8 && rating < 10) {
+      return 'Very good';
+    }
+    if(rating === 10) {
+      return 'Awesome';
+    }
+  };
+
+  const getTime = (n: number) => {
+    const hours = Math.floor(n / 60);
+    const minutes = n % 60;
+    return (`${hours}h ${minutes}m`);
+  };
+
   return (
     <>
       {type === 'details' &&
@@ -28,7 +52,7 @@ function FilmTabs({type, filmData, reviews}: FilmTabsProps) {
           <div className="film-card__text-col">
             <p className="film-card__details-item">
               <strong className="film-card__details-name">Run Time</strong>
-              <span className="film-card__details-value">{filmData.runTime} m</span>
+              <span className="film-card__details-value">{getTime(filmData.runTime)}</span>
             </p>
             <p className="film-card__details-item">
               <strong className="film-card__details-name">Genre</strong>
@@ -46,9 +70,9 @@ function FilmTabs({type, filmData, reviews}: FilmTabsProps) {
       {type === 'overview' &&
         <>
           <div className="film-rating">
-            <div className="film-rating__score">{filmData.rating}</div>
+            <div className="film-rating__score">{filmData.rating.toFixed(1).replace('.', ',')}</div>
             <p className="film-rating__meta">
-              <span className="film-rating__level">Very good</span>
+              <span className="film-rating__level">{getRating(filmData.rating)}</span>
               <span className="film-rating__count">{filmData.scoresCount} ratings</span>
             </p>
           </div>
