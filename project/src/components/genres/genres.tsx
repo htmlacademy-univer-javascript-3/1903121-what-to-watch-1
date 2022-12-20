@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks';
-import { switchGenre } from '../../store/actions';
+import { filmListProcess } from '../../store/film-list-process/film-list-process';
 import cn from 'classnames';
 
 function Genres() {
@@ -9,7 +9,7 @@ function Genres() {
   const [activeGenre, setActiveGenre] = useState<'all'|'Action'|'Adventure'|'Comedy'|'Crime'|'Documentary'|'Drama'|'Horror'|'Kids & Family'|'Romance'|'Sci-Fi'|'Thriller'>('all');
 
   useEffect(() => {
-    dispatch(switchGenre(activeGenre));
+    dispatch(filmListProcess.actions.switchGenre(activeGenre));
   }, [activeGenre]);
 
   return (
@@ -126,4 +126,4 @@ function Genres() {
   );
 }
 
-export default Genres;
+export default memo(Genres);
