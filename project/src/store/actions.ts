@@ -1,4 +1,4 @@
 import {createAction} from '@reduxjs/toolkit';
-import { AppRoute, AuthStatus } from '../const';
+import { AppRoute } from '../const';
 
 export const redirectToRoute = createAction<AppRoute>('cinema/redirectToRoute');
